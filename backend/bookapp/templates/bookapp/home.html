@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BookAI System</title>
+</head>
+<body>
+
+    <h1>📚 BookAI System</h1>
+
+    <!-- Add Book Form -->
+    <h2>Add Book</h2>
+    <form method="POST" action="/api/add-book/">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Book Title" required>
+        <input type="text" name="author" placeholder="Author" required>
+        <button type="submit">Add Book</button>
+    </form>
+
+    <hr>
+
+    <!-- Display Books -->
+    <h2>Books List</h2>
+
+    <ul>
+        {% for book in books %}
+            <li>
+                <strong>{{ book.title }}</strong> by {{ book.author }} <br>
+                <em>{{ book.summary }}</em>
+            </li>
+        {% empty %}
+            <li>No books added yet</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
